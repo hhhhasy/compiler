@@ -9,16 +9,19 @@
 	.align	2
 	.type	a, @object
 	.size	a, 4
+a:
 	.zero	4
 	.globl	b
 	.align	2
 	.type	b, @object
 	.size	b, 4
+b:
 	.zero	4
         .globl  c
         .align  2
         .type   c, @object
         .size   c, 1
+c:
         .zero   1
 	.text
 	.align	1
@@ -75,9 +78,12 @@ main:
 	lw   a1,%lo(a)(s0)
 	lw   a2,%lo(b)(s1)
 	lw   a3,%lo(c)(s2)
-	beq  a3,43,A
-	beq  a3,45,S
-	beq  a3,42,M
+	li   a4,43
+	li   a5,45
+	li   a6,32
+	beq  a3,a4,A
+	beq  a3,a5,S
+	beq  a3,a6,M
 	ld   ra,32(sp)
 	ld   s0,24(sp)
 	ld   s1,16(sp)
@@ -119,6 +125,9 @@ M:
 	
 	
 	
+	
+
+        	
 	
 
         
