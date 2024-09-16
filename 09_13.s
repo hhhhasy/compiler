@@ -7,8 +7,8 @@
 .globl  AD
 .type   AD, @function
 AD:
-        mv     a5, a1
-        mv     a6, a2
+        mv     a5, a0
+        mv     a6, a1
         addw   a5, a5, a6
         sext.w	a5,a5
         mv     a0,a5
@@ -20,8 +20,8 @@ AD:
 .globl  SB
 .type   SB, @function
 SB:
-        mv     a5, a1
-        mv     a6, a2
+        mv     a5, a0
+        mv     a6, a1
         subw   a5, a5, a6
         sext.w	a5,a5
         mv     a0,a5
@@ -33,8 +33,8 @@ SB:
 .type   ML, @function
 
 ML:
-        mv     a5, a1
-        mv     a6, a2
+        mv     a5, a0
+        mv     a6, a1
         mulw    a5, a5, a6
         sext.w	a5,a5
         mv     a0,a5
@@ -64,7 +64,7 @@ main:
 	addi	a5,s0,-20
         mv     a1,a4
         mv     a2,a5
-        mv     a3,a6
+        
         lui    a0, %hi(.str1)
         addi   a0, a0, %lo(.str1)
         call   __isoc99_scanf
@@ -120,7 +120,7 @@ main:
 	ld	s0,16(sp)
 	addi	sp,sp,32
 	jr	ra
-       
+        
 	
 	
 	
