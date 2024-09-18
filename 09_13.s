@@ -99,7 +99,7 @@ main:
 
 .S:
         lbu    a3,-25(s0)
-        li     a4, 32
+        li     a4, 42
         bne    a3,a4,.end
         lw     a0, -20(s0)
         lw     a1, -24(s0)
