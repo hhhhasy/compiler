@@ -41,7 +41,18 @@ ML:
         jr ra
         
         .size	ML, .-ML
-	
+
+.globl  DV
+.type   DV, @function
+DV:
+        mv     a5, a0
+        mv     a6, a1
+        divw    a5, a5, a6
+        sext.w	a5,a5
+        mv     a0,a5
+        jr ra
+        
+        .size	DV, .-DV	
 
 .str1:
         .string "%d %d %c"
@@ -62,8 +73,8 @@ main:
 	addi	a3,s0,-25
 	addi	a4,s0,-24
 	addi	a5,s0,-20
-        mv     a1,a4
-        mv     a2,a5
+        mv     a1,a5
+        mv     a2,a4
         
         lui    a0, %hi(.str1)
         addi   a0, a0, %lo(.str1)
@@ -100,7 +111,7 @@ main:
 .S:
         lbu    a3,-25(s0)
         li     a4, 42
-        bne    a3,a4,.end
+        bne    a3,a4,.D
         lw     a0, -20(s0)
         lw     a1, -24(s0)
         call   ML
@@ -110,7 +121,19 @@ main:
 	addi	a0,a5,%lo(.str2)
 	call	printf
 	j      .end
-	
+.D:
+        lbu    a3,-25(s0)
+        li     a4, 47
+        bne    a3,a4,.end
+        lw     a0, -20(s0)
+        lw     a1, -24(s0)
+        call   DV
+        mv	a5,a0
+	mv	a1,a5
+	lui	a5,%hi(.str2)
+	addi	a0,a5,%lo(.str2)
+	call	printf
+	j      .end	
 
 
 .end:
@@ -120,6 +143,17 @@ main:
 	ld	s0,16(sp)
 	addi	sp,sp,32
 	jr	ra
+        
+	
+	
+	
+	
+	
+
+        	
+	
+
+        
         
 	
 	
