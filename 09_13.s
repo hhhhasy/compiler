@@ -3,6 +3,12 @@
 .attribute arch, "rv64i2p1_m2p0_a2p1_f2p2_d2p2_c2p0_zicsr2p0"
 .attribute unaligned_access, 0
 .attribute stack_align, 16
+.section	.rodata
+.str1:
+        .string "%d %d %c"
+        
+.str2:
+        .string "%d"
 .text
 .globl  AD
 .type   AD, @function
@@ -54,11 +60,7 @@ DV:
         
         .size	DV, .-DV	
 
-.str1:
-        .string "%d %d %c"
-        
-.str2:
-        .string "%d"
+
 
 .text
 
