@@ -126,9 +126,11 @@ main:
 .D:
         lbu    a3,-25(s0)
         li     a4, 47
-        bne    a3,a4,.end
+        bne    a3,a4,.wr
         lw     a0, -20(s0)
         lw     a1, -24(s0)
+        li     a4,0
+        beq    a1,a4,.wr
         call   DV
         mv	a5,a0
 	mv	a1,a5
@@ -137,6 +139,11 @@ main:
 	call	printf
 	j      .end	
 
+.wr:
+        lui	a0,%hi(.str3)
+	addi	a0,a0,%lo(.str3)
+	call	printf
+	j       .end
 
 .end:
         li	a5,0
